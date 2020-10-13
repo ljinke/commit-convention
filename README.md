@@ -51,6 +51,7 @@ module.exports = {
 ### Test
 
 ```
+npx commitlint --from HEAD~3 --to HEAD --verbose
 npx commitlint "foo: invalid message"
 ```
 
