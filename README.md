@@ -44,5 +44,20 @@ module.exports = {
     "scope-enum": [2, "always", ["core", "api"]], // error if scope is given but not in provided list
     "header-max-length": [2, "always", 100],
   },
+  parserPreset: './parser-preset',
 };
 ```
+
+### Test
+
+```
+npx commitlint "foo: invalid message"
+```
+
+```
+git commit -m "foo: this will fail"
+git commit -m "chore: lint on commitmsg"
+
+```
+
+###
