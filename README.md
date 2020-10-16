@@ -48,6 +48,27 @@ module.exports = {
 };
 ```
 
+Sample to dynamically load the scopes:
+
+```
+const { readdirSync } = require('fs');
+
+const getPackageNames = (source = 'packages') =>
+    readdirSync(source, { withFileTypes: true })
+        .filter(file => file.isDirectory())
+        .map(dir => dir.name);
+
+module.exports = {
+    extends: ['@commitlint/config-conventional'],
+    rules: {
+        'scope-enum': () => {
+            const scopes = getPackageNames();
+            return [2, 'always', scopes];
+        },
+    },
+};
+```
+
 ### Test
 
 ```
@@ -60,5 +81,3 @@ git commit -m "foo: this will fail"
 git commit -m "chore: lint on commitmsg"
 
 ```
-
-###
